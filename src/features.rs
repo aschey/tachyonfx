@@ -7,8 +7,8 @@ use crate::fx::unique::UniqueContext;
 mod sendable {
     use std::sync::{Arc, Mutex};
 
-    pub trait ThreadSafetyMarker : Send {}
-    impl<T: Send> ThreadSafetyMarker for T {}
+    pub trait ThreadSafetyMarker : Send + Sync {}
+    impl<T: Send + Sync> ThreadSafetyMarker for T {}
 
     pub type RefCount<T> = Arc<Mutex<T>>;
 

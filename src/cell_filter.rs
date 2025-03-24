@@ -9,12 +9,12 @@ use std::fmt;
 #[cfg(not(feature = "sendable"))]
 type CellPredFn = RefCount<dyn Fn(&Cell) -> bool>;
 #[cfg(feature = "sendable")]
-type CellPredFn = RefCount<dyn Fn(&Cell) -> bool + Send>;
+type CellPredFn = RefCount<dyn Fn(&Cell) -> bool + Send + Sync>;
 
 #[cfg(not(feature = "sendable"))]
 type PositionFnType = RefCount<dyn Fn(Position) -> bool>;
 #[cfg(feature = "sendable")]
-type PositionFnType = RefCount<dyn Fn(Position) -> bool + Send>;
+type PositionFnType = RefCount<dyn Fn(Position) -> bool + Send + Sync>;
 
 /// A filter mode that enables effects to operate on specific cells based on various criteria.
 ///
